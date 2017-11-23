@@ -1,47 +1,34 @@
 package org.bogdanrakov.parsers;
 
-import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
-import com.google.gson.JsonParser;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+import org.bogdanrakov.Currency;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
+import java.lang.reflect.Type;
 import java.net.URL;
+import java.net.URLConnection;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Scanner;
 
 public class JSONParser {
 
-    private String urlString;
-    private URL url;
-    private JsonObject rootObject;
-
-    public JSONParser(String urlString) {
-        this.urlString = urlString;
-
+    public List<Currency> parseCurrency() {
+        String jsonToParse = null;
+        URLConnection connection = null;
         try {
-            url = new URL(urlString);
-        } catch (MalformedURLException e) {
+            connection =  new URL("https://bank.gov.ua/NBUStatService/v1/statdirectory/exchange?json").openConnection();
+            Scanner scanner = new Scanner(connection.getInputStream());
+            scanner.useDelimiter("\\Z");
+            jsonToParse = scanner.next();
+        } catch (Exception e ) {
             e.printStackTrace();
         }
 
-        HttpURLConnection request;
+        Gson gson = new Gson();
+        Type currenciesListType = new TypeToken<ArrayList<Currency>>() {
+        }.getType();
 
-        try {
-            request = (HttpURLConnection) url.openConnection();
-            request.connect();
-            JsonParser jp = new JsonParser();
-            JsonElement root = jp.parse(new InputStreamReader((InputStream) request.getContent()));
-            rootObject = root.getAsJsonObject();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
+        return gson.fromJson(jsonToParse, currenciesListType);
     }
-
-    public String getParsedFieldAsString(String field) {
-        return rootObject.get(field).getAsString();
-    }
-
 }
