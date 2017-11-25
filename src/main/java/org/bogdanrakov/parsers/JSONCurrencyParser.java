@@ -11,13 +11,12 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-public class JSONParser {
+public class JSONCurrencyParser {
 
     public List<Currency> parseCurrency() {
         String jsonToParse = null;
-        URLConnection connection = null;
         try {
-            connection =  new URL("https://bank.gov.ua/NBUStatService/v1/statdirectory/exchange?json").openConnection();
+            URLConnection connection =  new URL("https://bank.gov.ua/NBUStatService/v1/statdirectory/exchange?json").openConnection();
             Scanner scanner = new Scanner(connection.getInputStream());
             scanner.useDelimiter("\\Z");
             jsonToParse = scanner.next();
