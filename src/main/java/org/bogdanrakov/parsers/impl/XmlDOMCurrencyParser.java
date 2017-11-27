@@ -1,6 +1,7 @@
-package org.bogdanrakov.parsers;
+package org.bogdanrakov.parsers.impl;
 
 import org.bogdanrakov.Currency;
+import org.bogdanrakov.parsers.CurrencyParser;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
@@ -12,7 +13,7 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
-public class XmlDOMCurrencyParser {
+public class XmlDOMCurrencyParser implements CurrencyParser {
 
     public List<Currency> parseCurrency() {
         List<Currency> result = new ArrayList<Currency>();

@@ -1,8 +1,9 @@
-package org.bogdanrakov.parsers;
+package org.bogdanrakov.parsers.impl;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import org.bogdanrakov.Currency;
+import org.bogdanrakov.parsers.CurrencyParser;
 
 import java.lang.reflect.Type;
 import java.net.URL;
@@ -11,7 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-public class JSONCurrencyParser {
+public class JSONCurrencyParser implements CurrencyParser {
 
     public List<Currency> parseCurrency() {
         String jsonToParse = null;

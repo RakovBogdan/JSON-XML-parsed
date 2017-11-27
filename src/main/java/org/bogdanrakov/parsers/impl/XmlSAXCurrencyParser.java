@@ -1,15 +1,12 @@
-package org.bogdanrakov.parsers;
+package org.bogdanrakov.parsers.impl;
 
 import org.bogdanrakov.Currency;
-import org.xml.sax.InputSource;
-import org.xml.sax.XMLReader;
-import org.xml.sax.helpers.XMLReaderFactory;
+import org.bogdanrakov.parsers.CurrencyParser;
 
-import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
-public class XmlSAXCurrencyParser {
+public class XmlSAXCurrencyParser implements CurrencyParser {
 
     public List<Currency> parseCurrency() {
         List<Currency> result = new ArrayList<Currency>();
