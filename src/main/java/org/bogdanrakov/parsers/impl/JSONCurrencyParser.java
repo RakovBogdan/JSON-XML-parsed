@@ -17,7 +17,7 @@ public class JSONCurrencyParser implements CurrencyParser {
     public List<Currency> parseCurrency() {
         String jsonToParse = null;
         try {
-            URLConnection connection =  new URL("https://bank.gov.ua/NBUStatService/v1/statdirectory/exchange?json").openConnection();
+            URLConnection connection =  new URL("http://bank.gov.ua/NBUStatService/v1/statdirectory/exchange?json").openConnection();
             Scanner scanner = new Scanner(connection.getInputStream());
             scanner.useDelimiter("\\Z");
             jsonToParse = scanner.next();

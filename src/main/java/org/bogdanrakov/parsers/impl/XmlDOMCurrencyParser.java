@@ -21,7 +21,7 @@ public class XmlDOMCurrencyParser implements CurrencyParser {
         try {
             DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
             DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
-            Document document = dBuilder.parse(new URL("https://bank.gov.ua/NBUStatService/v1/statdirectory/exchange").openStream());
+            Document document = dBuilder.parse(new URL("http://bank.gov.ua/NBUStatService/v1/statdirectory/exchange").openStream());
             document.getDocumentElement().normalize();
 
             NodeList nodeList = document.getElementsByTagName("currency");
