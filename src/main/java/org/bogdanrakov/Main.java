@@ -22,8 +22,8 @@ public class Main {
         currencyList = parser.parseCurrency();
         System.out.println(currencyList);
 
-//        parser = new XmlSAXCurrencyParser();
-//        currencyList = parser.parseCurrency();
-//        System.out.println(currencyList);
+        parser = new XmlSAXCurrencyParser();
+        currencyList = parser.parseCurrency();
+        System.out.println(currencyList);
     }
 }
